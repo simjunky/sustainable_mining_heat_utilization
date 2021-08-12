@@ -1,0 +1,14 @@
+[PROJECT]
+
+[RP:OPTIMIZATION_MODEL]
+1=
+
+[OPENWINDOW_1]
+FILE0=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+FILE2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+MAXIM=1
+TOP=-1
+LEFT=4
+HEIGHT=719
+WIDTH=561
