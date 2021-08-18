@@ -40,5 +40,9 @@ scenario_data = DataFrame( scenario = "Germany_Stuttgart", hour = 1:n)
 input_data = innerjoin(scenario_data, load_data, on = :hour)
 
 
+# reduce the float62 type of the load info to avoid inport problems with GAMS
+input_data[!, :load] = convert.(Float32, input_data[!, :load])
+
+
 # write the reduced and scaled data without headers to the target destination .csv-file to be used as model input
 CSV.write(target_file, input_data, writeheader = false)
