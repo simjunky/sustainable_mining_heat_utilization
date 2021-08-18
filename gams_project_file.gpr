@@ -1,15 +1,21 @@
 [PROJECT]
 
-[OPENWINDOW_1]
-MAXIM=0
-TOP=-1
-LEFT=4
-HEIGHT=719
-WIDTH=561
+[RP:UNTITLED_1]
+1=
 
 [RP:OPTIMIZATION_MODEL]
 1=
 
 [MRUFILES]
-1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
-2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.gms
+2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.lst
+
+[OPENWINDOW_1]
+FILE0=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+FILE2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+MAXIM=0
+TOP=-1
+LEFT=4
+HEIGHT=719
+WIDTH=561
