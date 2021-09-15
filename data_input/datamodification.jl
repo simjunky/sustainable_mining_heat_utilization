@@ -17,11 +17,14 @@ plot_file = "plots/heat_demand.pdf"
 load_data = DataFrame(CSV.File(origin_file, delim=',', select=[:hour, :load]))
 
 
-#TODO: load is unitless and normalized to 1 000 000 => scale to the average household so that it is given in [Kwh]
+# average household in germany uses 100m^2 and on average 120kWh/m^2
+# scaling factor to scale heat load (which is normalized to 1 000 000) to average load per household (which is 12 000 KWh)
+scaling_factor = 12000 / 1000000
+load_data[!, :load] = scaling_factor * load_data[!, :load]
 
 
 # use the @df macro to easily plot the heat load over the year and store it as a plot
-demand_plot = @df load_data plot(:hour, :load, title = "heat demand for NUTS-DE11: Stuttgart", xlabel = "Hours of the year [h]", ylabel = "heat load []")
+demand_plot = @df load_data plot(:hour, :load, title = "scaled single household heat demand\n(in NUTS-DE11: Stuttgart)", xlabel = "hours of the year [h]", ylabel = "heat load [KWh]", label = "demand", legend = :outertopright)
 
 
 # write the stored plot to a .pdf-file
