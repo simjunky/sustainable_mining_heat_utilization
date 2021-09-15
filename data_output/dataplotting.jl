@@ -14,16 +14,31 @@ file_matrix = "data_output/data_matrix.csv"
 
 # files to save plots to
 cost_plot_file = "plots/costs_per_hour.pdf"
+supply_plot_file = "plots/supply_per_hour.pdf"
+supply_by_source_plot_file = "plots/supply_by_source.pdf"
 
 
 # read from .csv-files and store them into DataFrames
-cost_data = CSV.File(file_by_hour, delim=',') |> DataFrame
+hourly_data = CSV.File(file_by_hour, delim=',') |> DataFrame
+source_data = CSV.File(file_by_source, delim=',') |> DataFrame
 
 
 # use the @df macro to easily plot the heat load over the year and store it as a plot
 
-cost_plot = @df cost_data plot(:hour, [:total_heating_cost_per_hour, :electric_heating_cost_per_hour, :gas_heating_cost_per_hour, :mining_heating_cost_per_hour], title = "total heating cost per hour", xlabel = "hours of the year [h]", ylabel = "cost [\$]", label = ["total" "electric" "gas" "mining"], legend = :outertopright)
+cost_plot = @df hourly_data plot(:hour, [:total_heating_cost_per_hour, :electric_heating_cost_per_hour, :gas_heating_cost_per_hour, :mining_heating_cost_per_hour], title = "hourly heating cost by source", xlabel = "hours of the year [h]", ylabel = "cost [\$]", label = ["total" "electric" "gas" "mining"], legend = :outertopright)
 
 
-# write the stored plot to a .pdf-file
+# use the @df macro to plot the heat supply over the year and store it as a plot
+
+supply_plot = @df hourly_data plot(:hour, [:heat_demand, :electric_heat_supply_per_hour, :gas_heat_supply_per_hour, :mining_heat_supply_per_hour], title = "hourly heat supply by source", xlabel = "hours of the year [h]", ylabel = "heat supply [KWh]", label = ["total" "electric" "gas" "mining"], legend = :outertopright)
+
+
+# make a bar plot to show the different supply ammounts side by side
+
+supply_bar_plot = bar(source_data[!, :total_heating_cost_per_source], title = "total supply by source", xticks = (1:3, ["electric", "gas", "mining"]), legend = false)
+
+
+# write the stored plots to the .pdf-files
 savefig(cost_plot, cost_plot_file)
+savefig(supply_plot, supply_plot_file)
+savefig(supply_bar_plot, supply_by_source_plot_file)

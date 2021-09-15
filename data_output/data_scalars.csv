@@ -1,3 +1,7 @@
-"found minimum of total cost(lower,level,upper,marginal)","-INF",40347.60,"+INF",0.00
-"sum_of_heat_demand",1000000.00
-"sum_of_mining_revenue",319652.40
+"found minimum of total cost(lower,level,upper,marginal)","-INF",-1116.99,"+INF",0.00
+"sum_of_heat_demand",12000.00
+"sum_of_mining_revenue",4290.54
+"sum_of_heating_cost",1200.00
+"sum_of_capital_investment",6575.00
+"sum_of_capital_cost",12202.00
+"mining_revenue_per_kwh",0.36
