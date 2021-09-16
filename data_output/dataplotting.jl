@@ -35,7 +35,7 @@ supply_plot = @df hourly_data plot(:hour, [:heat_demand, :electric_heat_supply_p
 
 # make a bar plot to show the different supply ammounts side by side
 
-supply_bar_plot = bar(source_data[!, :total_heating_cost_per_source], title = "total supply by source", xticks = (1:3, ["electric", "gas", "mining"]), legend = false)
+supply_bar_plot = bar(source_data[!, :total_heating_cost_per_source], title = "total supply by source", xlabel = "sources", ylabel = "total heat supply [KWh]", xticks = (1:3, ["electric", "gas", "mining"]), legend = false)
 
 
 # write the stored plots to the .pdf-files
