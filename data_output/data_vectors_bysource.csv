@@ -1,4 +1,5 @@
-"source","total_heat_supply_per_source","total_heating_cost_per_source","n_heating_units","pay_rate","usage_cost"
-"electricity",214.36,21.44,3.00,79.79,2.19
-"gas",0.00,0.00,0.00,740.88,0.08
-"mining",11785.64,1178.56,1.00,2099.36,784.91
+"source","total_heat_supply_per_source","total_heat_drain_per_source","total_heating_cost_per_source","n_heating_units","pay_rate","usage_cost"
+"electricity",0.00,0.00,0.00,0.00,79.79,0.25
+"gas",0.00,0.00,0.00,0.00,740.88,0.08
+"mining",25967.80,0.00,6491.95,1.00,2099.36,1729.46
+"airconditioning",3207.58,13303.52,1320.89,2.00,116.91,53.51
