@@ -4,6 +4,7 @@
 1=
 
 [SOLVERS]
+MINLP=COUENNE
 LP=CPLEX
 MIP=CPLEX
 MIQCP=CPLEX
@@ -12,18 +13,19 @@ RMIP=CPLEX
 RMIQCP=CPLEX
 DNLP=IPOPT
 
-[OPENWINDOW_1]
-MAXIM=0
-TOP=-1
-LEFT=4
-HEIGHT=719
-WIDTH=1386
-
 [RP:OPTIMIZATION_MODEL]
 1=
 
 [MRUFILES]
-1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
-2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
-3=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.gms
-4=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.lst
+1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.gms
+2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.lst
+
+[OPENWINDOW_1]
+FILE0=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+FILE2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+MAXIM=1
+TOP=18
+LEFT=508
+HEIGHT=720
+WIDTH=766

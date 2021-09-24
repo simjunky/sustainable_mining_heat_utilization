@@ -85,7 +85,7 @@ $offdelim
 
 
 * calculate how much interest has to be payed annualy in addition to the regulat annual downpayment of the capital investment.
-pay_rate(heat_source) = capital_cost(heat_source) * (1 + sum(t$(ord(t) < lifetime(heat_source)+1), (1 + interest_rate)**ord(t))) / (lifetime(heat_source) + sum(t$(ord(t) < lifetime(heat_source)+1), ord(t) * (1 + interest_rate)**ord(t)));
+pay_rate(heat_source) = capital_cost(heat_source) * ((1 + interest_rate)**lifetime(heat_source) * interest_rate) / ((1 + interest_rate)**lifetime(heat_source) - 1);
 
 
 Variables
