@@ -1,4 +1,5 @@
-# This script reads .csv-file inputs and plots the resulting parameter curves into a .pdf-file.
+# This script reads .csv-file inputs and plots the resulting parameter curves into .pdf-files.
+# If invoked via command line the first argument is supposed to be the name of the scenario folder.
 
 
 using CSV # CSV is used to easily read from .csv-files
@@ -7,8 +8,8 @@ using Plots # Plot function to visualize data
 using StatsPlots # StatsPlots is used to plot directly from the Dataframes instead of "Plots"
 
 
-# specify scenario folder
-scenario_folder = "Germany_Stuttgart"
+# specify scenario folder using the command line arguments. if there are none use folder provided here
+scenario_folder = isempty(ARGS) ? "Germany_Stuttgart" : ARGS[1]
 
 # files containing plotting Data
 file_by_source = "$scenario_folder/data_output/data_vectors_bysource.csv"
