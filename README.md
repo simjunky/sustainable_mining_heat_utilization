@@ -4,7 +4,7 @@ Model and codebase to determine the change in profitability in crypto currency m
 
 
 
-## Shot introduction to the model
+## Short introduction to the model
 
 What we try to find out is what kind of different heat sources are best suited to heat a single-family home with a given heat demand.
 
@@ -32,7 +32,7 @@ Those results are passed back to GAMS and written into output files depending on
 
 ## How to use code & model
 
-The entire calculation and plotting procedure is automated and can be invoked on a Windows Machine using the `Batch` script **TBD**. Running it without control line arguments computes and plots all default scenarios specified in the `Batch` file. Running it with arguments uses them as scenarios and only computes those. This is the way to go to only compute single scenarios.
+The entire calculation and plotting procedure is automated and can be invoked on a Windows Machine using the `Batch` script [simulate_and_plot.bat](https://github.com/simjunky/sustainable_mining_heat_utilization/blob/main/simulate_and_plot.bat). Running it without control line arguments computes and plots all default scenarios specified in the `Batch` file. Running it with arguments uses them as scenarios and only computes those. This is the way to go to only compute single scenarios.
 
 Before running a scenario, the weather data must be accessible in accordingly named folders and files (e.g. `scenarioname\data_input\hourly_temp_profile.csv`). Apart from that all other folders and files are created automatically or overwritten if already existing.
 
@@ -41,6 +41,6 @@ For more granular control or troubleshooting all scripts can be invoked by thems
 
 
 
-## References
+## References (exerpt)
 [sperber2020]: Evelyn Sperber, Ulrich Frey, Valentin Bertsch, Reduced-order models for assessing demand response with heat pumps – Insights from the German energy system, Energy and Buildings, Volume 223, 2020, 110144, ISSN 0378-7788, [sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S037877881933378X)
 [renewables.ninja]: https://www.renewables.ninja
