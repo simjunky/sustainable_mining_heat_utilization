@@ -4,6 +4,7 @@
 1=
 
 [SOLVERS]
+MINLP=COUENNE
 LP=CPLEX
 MIP=CPLEX
 MIQCP=CPLEX
@@ -12,18 +13,32 @@ RMIP=CPLEX
 RMIQCP=CPLEX
 DNLP=IPOPT
 
-[OPENWINDOW_1]
-MAXIM=0
-TOP=-1
-LEFT=4
-HEIGHT=719
-WIDTH=1386
+[RP:V041]
+1=
+
+[RP:V041SOLVING]
+1=
+
+[RP:V041WRITING]
+1=
 
 [RP:OPTIMIZATION_MODEL]
 1=
 
 [MRUFILES]
-1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
-2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
-3=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.gms
-4=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.lst
+1=C:\Users\Patrick Martin\Documents\Forschungsmodul\Multinode South America Model (Antonio) (V041)\16N 16h\v041writing.gms
+2=C:\Users\Patrick Martin\Documents\Forschungsmodul\Multinode South America Model (Antonio) (V041)\16N 16h\v041solving.gms
+3=C:\Users\Patrick Martin\Documents\Forschungsmodul\LEELO Model Simon (also V041)\LEELO_Meh_Flex Sofia\v041solving.gms
+4=C:\Users\Patrick Martin\Documents\Forschungsmodul\LEELO Model Simon (also V041)\LEELO_Meh_Flex Sofia\v041.gms
+5=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.gms
+6=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\Untitled_1.lst
+
+[OPENWINDOW_1]
+FILE0=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+FILE2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+MAXIM=1
+TOP=0
+LEFT=0
+HEIGHT=724
+WIDTH=768

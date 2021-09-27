@@ -10,7 +10,7 @@ using StatsPlots # StatsPlots is used to plot directly from the Dataframes inste
 # file destinations for read and write files
 heat_origin_file = "data_input/load_profile_residential_shw_and_heating_yearlong_2010_DE11_Stuttgart.csv"
 heat_target_file = "data_input/hourly_heat_load.csv"
-heat_plot_file = "plots/heat_demand.pdf"
+heat_plot_file = "plots/heat_demand_profile.pdf"
 temp_origin_file = "data_input/ninja_weather_temp_stuttgart.csv"
 temp_target_file = "data_input/hourly_temp_profile.csv"
 temp_plot_file = "plots/temp_profile.pdf"
@@ -29,9 +29,9 @@ temp_load_data = DataFrame(CSV.File(temp_origin_file, delim=',', select=[:hour, 
 solar_load_data = DataFrame(CSV.File(solar_origin_file, delim=',', select=[:hour, :radiation_surface]))
 
 
-# average household in germany uses 100m^2 and on average 120kWh/m^2
+# average household in germany uses 100m^2 and on average 120kWh/m^2 but since house heat model uses single family homes which have 137m^2 we have to increase
 # scaling factor to scale heat load (which is normalized to 1 000 000) to average load per household (which is 12 000 KWh)
-heat_scaling_factor = 12000 / 1000000
+heat_scaling_factor = 137 * 120 / 1000000
 # scaling factor to scale solar radiance, which is in W/m^2 and should be in KW/m^2
 solar_scaling_factor = 0.001
 # scale and reduce the float62 type of the load info to float32 to avoid inport problems with GAMS

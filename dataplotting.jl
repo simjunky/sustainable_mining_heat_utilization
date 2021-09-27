@@ -1,4 +1,5 @@
-# This script reads .csv-file inputs and plots the resulting parameter curves into a .pdf-file.
+# This script reads .csv-file inputs and plots the resulting parameter curves into .pdf-files.
+# If invoked via command line the first argument is supposed to be the name of the scenario folder.
 
 
 using CSV # CSV is used to easily read from .csv-files
@@ -7,18 +8,21 @@ using Plots # Plot function to visualize data
 using StatsPlots # StatsPlots is used to plot directly from the Dataframes instead of "Plots"
 
 
+# specify scenario folder using the command line arguments. if there are none use folder provided here
+scenario_folder = isempty(ARGS) ? "Germany_Stuttgart" : ARGS[1]
+
 # files containing plotting Data
-file_by_source = "data_output/data_vectors_bysource.csv"
-file_by_hour = "data_output/data_vectors_hourly.csv"
-file_matrix = "data_output/data_matrix.csv"
+file_by_source = "$scenario_folder/data_output/data_vectors_bysource.csv"
+file_by_hour = "$scenario_folder/data_output/data_vectors_hourly.csv"
+file_matrix = "$scenario_folder/data_output/data_matrix.csv"
 
 # files to save plots to
-cost_plot_file = "plots/costs_per_hour.pdf"
-temp_plot_file = "plots/temp_per_hour.pdf"
-supply_plot_file = "plots/supply_per_hour.pdf"
-eff_supply_plot_file = "plots/eff_supply_per_hour.pdf"
-cost_by_source_plot_file = "plots/cost_by_source.pdf"
-supply_by_source_plot_file = "plots/supply_by_source.pdf"
+cost_plot_file = "$scenario_folder/plots/costs_per_hour.pdf"
+temp_plot_file = "$scenario_folder/plots/temp_per_hour.pdf"
+supply_plot_file = "$scenario_folder/plots/supply_per_hour.pdf"
+eff_supply_plot_file = "$scenario_folder/plots/eff_supply_per_hour.pdf"
+cost_by_source_plot_file = "$scenario_folder/plots/cost_by_source.pdf"
+supply_by_source_plot_file = "$scenario_folder/plots/supply_by_source.pdf"
 
 
 # read from .csv-files and store them into DataFrames
