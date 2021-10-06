@@ -12,17 +12,17 @@ using StatsPlots # StatsPlots is used to plot directly from the Dataframes inste
 scenario_folder = isempty(ARGS) ? "Germany_Stuttgart" : ARGS[1]
 
 # files containing plotting Data
-file_by_source = "$scenario_folder/data_output/data_vectors_bysource.csv"
-file_by_hour = "$scenario_folder/data_output/data_vectors_hourly.csv"
-file_matrix = "$scenario_folder/data_output/data_matrix.csv"
+file_by_source = "scenarios/$scenario_folder/data_output/data_vectors_bysource.csv"
+file_by_hour = "scenarios/$scenario_folder/data_output/data_vectors_hourly.csv"
+file_matrix = "scenarios/$scenario_folder/data_output/data_matrix.csv"
 
 # files to save plots to
-cost_plot_file = "$scenario_folder/plots/costs_per_hour.pdf"
-temp_plot_file = "$scenario_folder/plots/temp_per_hour.pdf"
-supply_plot_file = "$scenario_folder/plots/supply_per_hour.pdf"
-eff_supply_plot_file = "$scenario_folder/plots/eff_supply_per_hour.pdf"
-cost_by_source_plot_file = "$scenario_folder/plots/cost_by_source.pdf"
-supply_by_source_plot_file = "$scenario_folder/plots/supply_by_source.pdf"
+cost_plot_file = "scenarios/$scenario_folder/plots/costs_per_hour.pdf"
+temp_plot_file = "scenarios/$scenario_folder/plots/temp_per_hour.pdf"
+supply_plot_file = "scenarios/$scenario_folder/plots/supply_per_hour.pdf"
+eff_supply_plot_file = "scenarios/$scenario_folder/plots/eff_supply_per_hour.pdf"
+cost_by_source_plot_file = "scenarios/$scenario_folder/plots/cost_by_source.pdf"
+supply_by_source_plot_file = "scenarios/$scenario_folder/plots/supply_by_source.pdf"
 
 
 # read from .csv-files and store them into DataFrames
