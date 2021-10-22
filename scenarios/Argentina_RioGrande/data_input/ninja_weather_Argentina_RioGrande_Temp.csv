@@ -1,6 +1,6 @@
-# Renewables.ninja Weather (Point API) - -53.786, -67.702 - Version: 1.0 - License: https://science.nasa.gov/earth-science/earth-science-data/data-information-policy - Reference: https://www.renewables.ninja/
-# Units: time in UTC, local_time in America/Argentina/Ushuaia, temperature in ºC
-# {"units": {"time": "UTC", "local_time": "America/Argentina/Ushuaia", "temperature": "\u00baC"}, "params": {"local_time": true, "header": true, "lat": "-53.7856766", "lon": "-67.7016369", "date_from": "2019-01-01", "date_to": "2019-12-31", "dataset": "merra2", "var_t2m": true, "var_prectotland": false, "var_precsnoland": false, "var_snomas": false, "var_rhoa": false, "var_swgdn": false, "var_swtdn": false, "var_cldtot": false}}
+#
+#
+#
 time,local_time,temperature
 2019-01-01 00:00,2018-12-31 21:00,9.165
 2019-01-01 01:00,2018-12-31 22:00,7.324
