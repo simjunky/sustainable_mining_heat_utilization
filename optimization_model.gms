@@ -79,14 +79,14 @@ Parameters
          temperature_T_a(t)                      outside air temperature for every hour of the year in °C
          /
 $                ondelim
-$                include %SCENARIO_FOLDER%\data_input\hourly_temp_profile.csv
+$                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_temp_profile.csv
 $                offdelim
                                          /
 
          solar_radiation_P_s(t)                  heating power of the sun in KW per m^2
          /
 $                ondelim
-$                include %SCENARIO_FOLDER%\data_input\hourly_solar_profile.csv
+$                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_solar_profile.csv
 $                offdelim
                                          /;
 
@@ -170,10 +170,10 @@ Solve optimization_model using mip minimizing cost;
 * set up output files in the output folder of the scenario
 * for later ease of plotting each file handles one type of data: scalar, vectors depending on the heat source, vectors depending on the hour and matrices depending on both
 Files
-         data_scalars            / %SCENARIO_FOLDER%\data_output\data_scalars.csv /
-         data_vectors_hourly     / %SCENARIO_FOLDER%\data_output\data_vectors_hourly.csv /
-         data_vectors_bysource   / %SCENARIO_FOLDER%\data_output\data_vectors_bysource.csv /
-         data_matrix             / %SCENARIO_FOLDER%\data_output\data_matrix.csv /;
+         data_scalars            / scenarios\%SCENARIO_FOLDER%\data_output\data_scalars.csv /
+         data_vectors_hourly     / scenarios\%SCENARIO_FOLDER%\data_output\data_vectors_hourly.csv /
+         data_vectors_bysource   / scenarios\%SCENARIO_FOLDER%\data_output\data_vectors_bysource.csv /
+         data_matrix             / scenarios\%SCENARIO_FOLDER%\data_output\data_matrix.csv /;
 
 
 * print file content for scalar file
