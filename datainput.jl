@@ -67,5 +67,6 @@ for directory in scenario_directories
     savefig(temp_plot, temp_plot_file)
     savefig(solar_plot, solar_plot_file)
 
+
     printstyled("prepared input and plot for $(directory)\n", color = :light_green)
 end
