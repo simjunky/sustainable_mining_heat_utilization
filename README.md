@@ -41,7 +41,7 @@ Before running a scenario, the weather data must be accessible in accordingly na
 
 For more granular control or troubleshooting all scripts can be invoked by themselves: input data parsing (`datainput.jl`), gams model and calculation (`optimization_model.gms`) and plotting of results (`dataplotting.jl`).
 
-To compare data of different scenarios the `Julia` script `datacomp.jl` can be used.
+To compare data of different scenarios the `Julia` script `datacompare.jl` can be used.
 
 
 
