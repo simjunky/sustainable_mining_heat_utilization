@@ -4,6 +4,7 @@ Model and codebase to determine the change in profitability in crypto currency m
 
 
 
+
 ## Short introduction to the model
 
 What we try to find out is what kind of different heat sources are best suited to heat a single-family home with a given heat demand.
@@ -20,6 +21,7 @@ To get reliable heat demand data for different regions on earth with different c
 
 
 
+
 ## How the code works
 
 Central piece of the code is a GAMS model located in [optimization_model.gms](https://github.com/simjunky/sustainable_mining_heat_utilization/blob/main/optimization_model.gms), in which all the above mentioned equations and constraints are formulated. To feed necessary and scenario based data into the model a folder hierarchy is used containing original `.csv` data files and some `Julia` code to parse it to GAMS readable `.csv` files.
@@ -30,13 +32,16 @@ Those results are passed back to GAMS and written into output files depending on
 
 
 
+
 ## How to use code & model
 
-The entire calculation and plotting procedure is automated and can be invoked on a Windows Machine using the `Batch` script [simulate_and_plot.bat](https://github.com/simjunky/sustainable_mining_heat_utilization/blob/main/simulate_and_plot.bat). Running it without control line arguments computes and plots all default scenarios specified in the `Batch` file. Running it with arguments uses them as scenarios and only computes those. This is the way to go to only compute single scenarios.
+The entire calculation and plotting procedure is automated and can be invoked on a Windows Machine using the `Batch` script [simulate_and_plot.bat](https://github.com/simjunky/sustainable_mining_heat_utilization/blob/main/simulate_and_plot.bat). By default running it without control line arguments computes and plots all scenarios for which scenario directories and input files exist. Running it with scenario names as arguments computes those specified scenarios. This is the way to go to compute new, or recompute single scenarios after changing some data.
 
-Before running a scenario, the weather data must be accessible in accordingly named folders and files (e.g. `scenarioname\data_input\hourly_temp_profile.csv`). Apart from that all other folders and files are created automatically or overwritten if already existing.
+Before running a scenario, the weather data must be accessible in accordingly named folders and files (e.g. `<scenarioname>\data_input\hourly_temp_profile.csv`). Apart from that all other folders and files are created automatically or are updated if already existing.
 
-For more granular control or troubleshooting all scripts can be invoked by themselves: input data parsing, gams model and calculation, result plotting.
+For more granular control or troubleshooting all scripts can be invoked by themselves: input data parsing (`datainput.jl`), gams model and calculation (`optimization_model.gms`) and plotting of results (`dataplotting.jl`).
+
+To compare data of different scenarios the `Julia` script `datacompare.jl` can be used.
 
 
 
