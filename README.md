@@ -48,4 +48,5 @@ To compare data of different scenarios the `Julia` script `datacompare.jl` can b
 
 ## References (exerpt)
 [sperber2020]: Evelyn Sperber, Ulrich Frey, Valentin Bertsch, Reduced-order models for assessing demand response with heat pumps – Insights from the German energy system, Energy and Buildings, Volume 223, 2020, 110144, ISSN 0378-7788, [sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S037877881933378X)
+
 [renewables.ninja]: https://www.renewables.ninja

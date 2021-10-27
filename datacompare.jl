@@ -14,7 +14,6 @@ scenario_directories = isempty(ARGS) ? first(walkdir("./scenarios"))[2] : ARGS
 
 
 # What i want to show:
-#TODO: Average Temperature of two different groups: steady and volatile group.
 #TODO: total energy consumption from hot to cold for each group
 #TODO: total energy by source from each group
 #TODO: total cost/revenue for each location
@@ -76,3 +75,33 @@ end
 
 savefig(plot_temp_volatile, "comparison/temp_profiles_volatile.pdf")
 savefig(plot_avg_temp_volatile, "comparison/temp_profiles_volatile_avg.pdf")
+
+
+
+
+# plot heating supply  by location in total and by source
+source_data = zeros((length(scenarios_stable), 5))
+index = 1
+
+for directory in scenarios_stable
+
+    inputfile = "scenarios/$(directory)/data_output/data_vectors_bysource.csv"
+
+    # skip scenario if input files do not exist and inform about it
+    if(!isfile(inputfile))
+        printstyled("$(inputfile) not found\n", color = :light_red)
+        global index += 1
+        continue
+    end
+
+    data = CSV.read(inputfile, DataFrame; delim=',', header=1, select=[:source, :total_heat_supply_per_source, :total_heat_drain_per_source])
+
+    source_data[index, 1] = sum(data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source])
+    source_data[index, 2:5] = data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source]
+
+    global index += 1
+end
+
+plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Karthoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "gas" "mining" "AC"], legend = :outertopright)
+
+savefig(plot_supply_stable, "comparison/supply_bysource_moderate.pdf")
