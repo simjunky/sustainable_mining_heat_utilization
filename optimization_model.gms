@@ -17,78 +17,74 @@ $if not set SCENARIO_FOLDER $set SCENARIO_FOLDER Germany_Stuttgart
 
 Sets
          t                               hours of the year /1*8760/    // 24h per 365 days
-         heat_source                     available heat sources / electricity, gas, mining, airconditioning /;
+         heat_source                     available heat sources / electricity, mining, airconditioning /;    //additional heat sources may be added via scenario parameter file file
 
 
 Scalars
 * parameters for mining rig and economical calculations:
-         btc_price                       fixed bitcoin price in Dollars /37500/ // very volatile, so fixed price maybe not best modeling approach but a good enough starting point
-         btc_reward                      expected bitcoin reward per 1 Terrahash of computing power in BTC /0.0000003649/ // very dependent on current mining difficulty which is highly volatile
-         miner_hashrate                  fixed mining rig hash rate in TH per hour /73/ // parameter of the choosen mining rig
-         interest_rate                   fixed private interest rate to borrow money /0.07/ //could not find adequate source, Local Bank: from 3.9% to 10.5% with state-mandated example at 7%
+         btc_price                       fixed bitcoin price in Dollars
+* very volatile, so fixed price maybe not best modeling approach but a good enough starting point
+
+         btc_reward                      expected bitcoin reward per 1 Terrahash of computing power in BTC
+* very dependent on current mining difficulty which is highly volatile
+
+         miner_hashrate                  fixed mining rig hash rate in TH per hour
+* parameter of the choosen mining rig
+
+         interest_rate                   fixed private interest rate to borrow money
+* could not find adequate source, Local Bank: from 3.9% to 10.5% with state-mandated example at 7%
+
 * parameters for thermal model according to and using parameters of Sperber2020 category SFH H Var 2 : AeratedConcreteBrickwork
-         target_temperature              interior target temperature througout the year in °C / 20 /
-         thermal_resistance_R_i_e        thermal resistance betwenn interior air and building envelope in °C per kW / 0.33 /
-         thermal_resistance_R_e_a        thermal resistance between building envelope and ambient air in °C per kW / 5.39 /
-         thermal_resistance_R_i_a        thermal resistance between interior air and ambient air in °C per kW / 28.29 /
-         thermal_capacity_C_i            thermal capacitance of the interior air in kWh per °C / 1.71 /
-         thermal_capacity_C_e            thermal capacitance of the building envelope in kWh per °C / 14.21 /
-         area_A_i                        effective window area to absorb solar radiation to interior air in m^2 / 2.88 /
-         internal_heat_gains             other heat sources in a household / 0.411 /;
+         target_temperature              interior target temperature througout the year in °C
+         thermal_resistance_R_i_e        thermal resistance betwenn interior air and building envelope in °C per kW
+         thermal_resistance_R_e_a        thermal resistance between building envelope and ambient air in °C per kW
+         thermal_resistance_R_i_a        thermal resistance between interior air and ambient air in °C per kW
+         thermal_capacity_C_i            thermal capacitance of the interior air in kWh per °C
+         thermal_capacity_C_e            thermal capacitance of the building envelope in kWh per °C
+         area_A_i                        effective window area to absorb solar radiation to interior air in m^2
+         internal_heat_gains             other heat sources in a household;
 
 
 Parameters
          fuel_price(heat_source)                 fuelprices of each heating source in Dollar per kWh
-         /       electricity     0.25
-                 gas             0.083
-                 mining          0.25
-                 airconditioning 0.08    /
 * Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
 * air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-Price * 1/3
 * NOTE: German electricity price in Dollars: 36ct per kWh
 
          peak_heat_supply_power(heat_source)     maximum ammount of heat produced by one unit in kW
-         /       electricity     0.6
-                 gas             8
-                 mining          3
-                 airconditioning 2.6     /
 *8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
 
          peak_heat_drain_power(heat_source)      maximum ammount of heat drained from the system by one unit in kW
-         /       electricity     0.0
-                 gas             0.0
-                 mining          0.0
-                 airconditioning 2.5     /
-* the only heat_source that can alo cool is the air conditioner... in later implementations also heat pumps
+* the only heat_source that can also cool is the air conditioner... in later implementations also heat pumps
 
          capital_cost(heat_source)               capital cost of installing one heating unit in Dollar
-         /       electricity     1025
-                 gas             7000
-                 mining          3500
-                 airconditioning 737     /
 
          lifetime(heat_source)                   expected lifetime until repurchase or obsolecence in years
-         /       electricity     20
-                 gas             15
-                 mining          2
-                 airconditioning 10      /
 * difficult to get acurate for mining but one product-cycle seems to be 1 year and one product should remain competitive two to three generations.
 
          pay_rate(heat_source)                   ammount of Dollars to pay per year for capital expenses on loaned basis
 
          temperature_T_a(t)                      outside air temperature for every hour of the year in °C
          /
-$                ondelim
-$                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_temp_profile.csv
-$                offdelim
+$ondelim
+$offlisting
+$include scenarios\%SCENARIO_FOLDER%\data_input\hourly_temp_profile.csv
+$onlisting
+$offdelim
                                          /
 
          solar_radiation_P_s(t)                  heating power of the sun in kW per m^2
          /
-$                ondelim
-$                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_solar_profile.csv
-$                offdelim
+$ondelim
+$offlisting
+$include scenarios\%SCENARIO_FOLDER%\data_input\hourly_solar_profile.csv
+$onlisting
+$offdelim
                                          /;
+
+
+$include scenarios\%SCENARIO_FOLDER%\data_input\scenario_parameters.inc
+
 
 
 * calculate how much interest has to be payed annualy in addition to the regulat annual downpayment of the capital investment (annuity).
