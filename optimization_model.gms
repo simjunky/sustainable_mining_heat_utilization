@@ -28,33 +28,33 @@ Scalars
          interest_rate                   fixed private interest rate to borrow money /0.07/ //could not find adequate source, Local Bank: from 3.9% to 10.5% with state-mandated example at 7%
 * parameters for thermal model according to and using parameters of Sperber2020 category SFH H Var 2 : AeratedConcreteBrickwork
          target_temperature              interior target temperature througout the year in °C / 20 /
-         thermal_resistance_R_i_e        thermal resistance betwenn interior air and building envelope in °C per KW / 0.33 /
-         thermal_resistance_R_e_a        thermal resistance between building envelope and ambient air in °C per KW / 5.39 /
-         thermal_resistance_R_i_a        thermal resistance between interior air and ambient air in °C per KW / 28.29 /
-         thermal_capacity_C_i            thermal capacitance of the interior air in KWh per °C / 1.71 /
-         thermal_capacity_C_e            thermal capacitance of the building envelope in KWh per °C / 14.21 /
+         thermal_resistance_R_i_e        thermal resistance betwenn interior air and building envelope in °C per kW / 0.33 /
+         thermal_resistance_R_e_a        thermal resistance between building envelope and ambient air in °C per kW / 5.39 /
+         thermal_resistance_R_i_a        thermal resistance between interior air and ambient air in °C per kW / 28.29 /
+         thermal_capacity_C_i            thermal capacitance of the interior air in kWh per °C / 1.71 /
+         thermal_capacity_C_e            thermal capacitance of the building envelope in kWh per °C / 14.21 /
          area_A_i                        effective window area to absorb solar radiation to interior air in m^2 / 2.88 /
          internal_heat_gains             other heat sources in a household / 0.411 /;
 
 
 Parameters
-         fuel_price(heat_source)                 fuelprices of each heating source in Dollar per KWh
+         fuel_price(heat_source)                 fuelprices of each heating source in Dollar per kWh
          /       electricity     0.25
                  gas             0.083
                  mining          0.25
                  airconditioning 0.08    /
-* Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per KWh as with electric heating
+* Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
 * air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-Price * 1/3
-* NOTE: German electricity price in Dollars: 36ct per KWh
+* NOTE: German electricity price in Dollars: 36ct per kWh
 
-         peak_heat_supply_power(heat_source)     maximum ammount of heat produced by one unit in KW
+         peak_heat_supply_power(heat_source)     maximum ammount of heat produced by one unit in kW
          /       electricity     0.6
                  gas             8
                  mining          3
                  airconditioning 2.6     /
-*8KW is typical throughput of a residential gas pipe, 2.5KW the equivalent of a 4 heater (each 0.6KW) electric heating system for which the above capital cost was given
+*8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
 
-         peak_heat_drain_power(heat_source)      maximum ammount of heat drained from the system by one unit in KW
+         peak_heat_drain_power(heat_source)      maximum ammount of heat drained from the system by one unit in kW
          /       electricity     0.0
                  gas             0.0
                  mining          0.0
@@ -83,7 +83,7 @@ $                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_temp_prof
 $                offdelim
                                          /
 
-         solar_radiation_P_s(t)                  heating power of the sun in KW per m^2
+         solar_radiation_P_s(t)                  heating power of the sun in kW per m^2
          /
 $                ondelim
 $                include scenarios\%SCENARIO_FOLDER%\data_input\hourly_solar_profile.csv
@@ -109,8 +109,8 @@ Variables
 
 
 positive Variables
-         heat_supply(heat_source, t)             ammount of heat produced by each source per hour in KWh
-         heat_drain(heat_source, t)              ammount of heat removed from the system by each source per hour in KWh
+         heat_supply(heat_source, t)             ammount of heat produced by each source per hour in kWh
+         heat_drain(heat_source, t)              ammount of heat removed from the system by each source per hour in kWh
          mining_revenue(t)                       ammount of money in Dollar mined using the energy later used to heat;
 
 

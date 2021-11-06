@@ -47,7 +47,7 @@ for directory in scenario_directories
     insertcols!(solar_load_data, 1, :hour => collect(1:8760))
 
 
-    # scaling factor to scale solar radiance, which is in W/m^2 and should be in KW/m^2
+    # scaling factor to scale solar radiance, which is in W/m^2 and should be in kW/m^2
     solar_scaling_factor = 0.001
     # scale and reduce the float62 type of the load info to float32 to avoid inport problems with GAMS
     solar_load_data[!, :radiation_surface] = convert.(Float32, solar_scaling_factor * solar_load_data[!, :radiation_surface])
@@ -60,7 +60,7 @@ for directory in scenario_directories
 
     # use the @df macro to easily plot the heat load and temperature over the year and store it as a plot
     temp_plot = @df temp_load_data plot(:hour, :temperature, title = "hourly air temperature ($(directory))", xlabel = "hours of the year [h]", ylabel = "temperature [°C]", label = "temperature", legend = :outertopright)
-    solar_plot = @df solar_load_data plot(:hour, :radiation_surface, title = "hourly solar radiation on surface level\n($directory)", xlabel = "hours of the year [h]", ylabel = "solar radiation [KW/m^2]", label = "solar radiation", legend = :outertopright)
+    solar_plot = @df solar_load_data plot(:hour, :radiation_surface, title = "hourly solar radiation on surface level\n($directory)", xlabel = "hours of the year [h]", ylabel = "solar radiation [kW/m^2]", label = "solar radiation", legend = :outertopright)
 
 
     # write the stored plot to a .pdf-file

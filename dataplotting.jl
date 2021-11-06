@@ -56,11 +56,11 @@ for directory in scenario_directories
 
 
     # use the @df macro to plot the heat supply over the year and store it as a plot
-    supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour, :electric_heat_supply_per_hour, :gas_heat_supply_per_hour, :mining_heat_supply_per_hour, :ac_heat_supply_per_hour, -:ac_heat_drain_per_hour], title = "hourly heat supply by source", xlabel = "hours of the year [h]", ylabel = "heat supply [KWh]", label = ["total" "electric" "gas" "mining" "ac-heating" "ac-cooling"], legend = :outertopright)
+    supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour, :electric_heat_supply_per_hour, :gas_heat_supply_per_hour, :mining_heat_supply_per_hour, :ac_heat_supply_per_hour, -:ac_heat_drain_per_hour], title = "hourly heat supply by source", xlabel = "hours of the year [h]", ylabel = "heat supply [kWh]", label = ["total" "electric" "gas" "mining" "ac-heating" "ac-cooling"], legend = :outertopright)
 
 
     # use the @df macro to plot the total effective heat supply over the year and store it as a plot
-    eff_supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour - :ac_heat_drain_per_hour], title = "effective hourly heat supply", xlabel = "hours of the year [h]", ylabel = "heat supply [KWh]", label = "effective total", legend = :outertopright)
+    eff_supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour - :ac_heat_drain_per_hour], title = "effective hourly heat supply", xlabel = "hours of the year [h]", ylabel = "heat supply [kWh]", label = "effective total", legend = :outertopright)
 
 
     # make a bar plot to show the different costs side by side
@@ -68,7 +68,7 @@ for directory in scenario_directories
 
 
     # make a bar plot to show the different supply ammounts side by side
-    supply_bar_plot = groupedbar([source_data[!, :total_heat_supply_per_source] source_data[!, :total_heat_drain_per_source]], bar_position = :dodge, title = "total supply and drain by source", xlabel = "sources", ylabel = "total heat supply [KWh]", xticks = (1:4, ["electric", "gas", "mining", "airconditioning"]), legend = false)
+    supply_bar_plot = groupedbar([source_data[!, :total_heat_supply_per_source] source_data[!, :total_heat_drain_per_source]], bar_position = :dodge, title = "total supply and drain by source", xlabel = "sources", ylabel = "total heat supply [kWh]", xticks = (1:4, ["electric", "gas", "mining", "airconditioning"]), legend = false)
 
 
     # write the stored plots to the .pdf-files
