@@ -22,17 +22,14 @@ Sets
 
 Scalars
 * parameters for mining rig and economical calculations:
-         btc_price                       fixed bitcoin price in Dollars
+
 * very volatile, so fixed price maybe not best modeling approach but a good enough starting point
-
-         btc_reward                      expected bitcoin reward per 1 Terrahash of computing power in BTC
+         btc_price                       constant bitcoin price in Dollars
 * very dependent on current mining difficulty which is highly volatile
-
-         miner_hashrate                  fixed mining rig hash rate in TH per hour
+         btc_reward                      expected bitcoin reward per 1 Terrahash of computing power in BTC
 * parameter of the choosen mining rig
-
-         interest_rate                   fixed private interest rate to borrow money
-* could not find adequate source, Local Bank: from 3.9% to 10.5% with state-mandated example at 7%
+         miner_hashrate                  constant mining rig hash rate in TH per hour
+         interest_rate                   constant private interest rate to borrow money
 
 * parameters for thermal model according to and using parameters of Sperber2020 category SFH H Var 2 : AeratedConcreteBrickwork
          target_temperature              interior target temperature througout the year in °C
@@ -42,26 +39,15 @@ Scalars
          thermal_capacity_C_i            thermal capacitance of the interior air in kWh per °C
          thermal_capacity_C_e            thermal capacitance of the building envelope in kWh per °C
          area_A_i                        effective window area to absorb solar radiation to interior air in m^2
-         internal_heat_gains             other heat sources in a household;
+         internal_heat_gains             other heat sources in a household in kWh;
 
 
 Parameters
          fuel_price(heat_source)                 fuelprices of each heating source in Dollar per kWh
-* Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
-* air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-Price * 1/3
-* NOTE: German electricity price in Dollars: 36ct per kWh
-
          peak_heat_supply_power(heat_source)     maximum ammount of heat produced by one unit in kW
-*8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
-
          peak_heat_drain_power(heat_source)      maximum ammount of heat drained from the system by one unit in kW
-* the only heat_source that can also cool is the air conditioner... in later implementations also heat pumps
-
          capital_cost(heat_source)               capital cost of installing one heating unit in Dollar
-
          lifetime(heat_source)                   expected lifetime until repurchase or obsolecence in years
-* difficult to get acurate for mining but one product-cycle seems to be 1 year and one product should remain competitive two to three generations.
-
          pay_rate(heat_source)                   ammount of Dollars to pay per year for capital expenses on loaned basis
 
          temperature_T_a(t)                      outside air temperature for every hour of the year in °C
@@ -83,17 +69,8 @@ $offdelim
                                          /;
 
 
-$include scenarios\%SCENARIO_FOLDER%\data_input\scenario_parameters.inc
 
 
-
-* calculate how much interest has to be payed annualy in addition to the regulat annual downpayment of the capital investment (annuity).
-pay_rate(heat_source) = capital_cost(heat_source) * ((1 + interest_rate)**lifetime(heat_source) * interest_rate) / ((1 + interest_rate)**lifetime(heat_source) - 1);
-
-
-
-
-*
 Variables
          cost                                    annual cost of the heating system in Dollars
          heat_cost(heat_source, t)               cost of fuel used up to supply heat in Dollars
@@ -111,16 +88,18 @@ positive Variables
 
 
 integer Variables
-         n_heating_units(heat_source)            number of heating units nessecairy to produce the supplied heat
-         /       electricity.lo          0
-                 electricity.up          20
-                 gas.lo                  0
-                 gas.up                  20
-                 mining.lo               0
-                 mining.up               20
-                 airconditioning.lo      0
-                 airconditioning.up      20      /;
-* lower and upper bounds given to make sure a solution exists
+         n_heating_units(heat_source)            number of heating units nessecairy to produce the supplied heat;
+
+
+
+
+* include scenario specific parameter file in which values are set
+$include scenarios\%SCENARIO_FOLDER%\data_input\scenario_parameters.inc
+
+* calculate how much interest has to be payed annualy in addition to the regulat annual downpayment of the capital investment (annuity).
+pay_rate(heat_source) = capital_cost(heat_source) * ((1 + interest_rate)**lifetime(heat_source) * interest_rate) / ((1 + interest_rate)**lifetime(heat_source) - 1);
+
+
 
 
 Equations
