@@ -22,11 +22,14 @@ DNLP=IPOPT
 [RP:V041WRITING]
 1=
 
+[RP:V039SOLVING]
+1=
+
 [RP:OPTIMIZATION_MODEL]
 1=
 
 [MRUFILES]
-1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+1=C:\Users\Patrick Martin\Documents\Forschungsmodul\Old Chile Model (V039)\v039solving.gms
 2=C:\Users\Patrick Martin\Documents\Forschungsmodul\Multinode South America Model (Antonio) (V041)\16N 16h\v041writing.gms
 3=C:\Users\Patrick Martin\Documents\Forschungsmodul\Multinode South America Model (Antonio) (V041)\16N 16h\v041solving.gms
 4=C:\Users\Patrick Martin\Documents\Forschungsmodul\LEELO Model Simon (also V041)\LEELO_Meh_Flex Sofia\v041solving.gms
@@ -36,9 +39,10 @@ DNLP=IPOPT
 
 [OPENWINDOW_1]
 FILE0=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
-FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
-MAXIM=1
+FILE1=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.lst
+FILE2=C:\Users\Patrick Martin\OneDrive\Dokumente\Alles zum Studium\Master\Forschungsmodule\Forschungsmodul 2 (Sustainable Crypto Mining Heat Utilization)\optimization_model.gms
+MAXIM=0
 TOP=0
 LEFT=0
-HEIGHT=724
-WIDTH=768
+HEIGHT=1296
+WIDTH=1724

@@ -59,23 +59,73 @@ internal_heat_gains             = 0.411;
 
 
 
+* parameters for the PV model
+* Using Data and model provided by HuldEtAl2010
+
+* if pv modules should be used in the simulation (1=true 0=false)
+USE_PV_MODULES = 0;
+* capital cost of installing one pv module in Dollar
+* to be adjusted to reasonable(average) panel price... also still doesnt include installation cost or the cost of the converter
+capital_cost_pv = 258;
+
+* lifetime of the pv modules in years
+lifetime_pv = 30;
+
+* surface area of the used pv module in m^2
+pv_module_area = 1.65 * 0.992;
+
+* power supply of single pv module under standard test conditions in one hour in kWh
+* to be adjusted to reasonable(average) size
+power_supply_P_STC = 0.315;
+
+* radiation under standard test conditions in kW per m^2
+solar_radiation_P_STC = 1;
+
+* pv module temperature under standard test conditions in °C
+pv_temperature_T_STC = 25;
+
+* factor describing how much the pv module is heated up by radiation in °C m^2 / kW
+radiation_heatup_factor_c_T = 35.0;
+
+* constand factors used to fit pv efficiency model to real world data
+rel_eff_factor_k_1 = -0.017162;
+rel_eff_factor_k_2 = -0.040289;
+rel_eff_factor_k_3 = -0.004681;
+rel_eff_factor_k_4 = 0.000148;
+rel_eff_factor_k_5 = 0.0000169;
+rel_eff_factor_k_6 = 0.000005;
+
+
+
+
 * heat source dependent parameters:
 
+* set the price of electricity, which is used in many locations
+$set ELECTRICITY_PRICE 0.25
+
 * fuelprices of each heating source in Dollar per kWh
-fuel_price('electricity')         = 0.25;
+fuel_price('electricity')         = %ELECTRICITY_PRICE%;
 fuel_price('gas')                 = 0.083;
-fuel_price('mining')              = 0.25;
-fuel_price('airconditioning')     = 0.08;
+fuel_price('mining')              = %ELECTRICITY_PRICE%;
+fuel_price('airconditioning')     = %ELECTRICITY_PRICE% * (1/3);
 * Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
-* air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-Price * 1/3
+* air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-price * 1/3
 * NOTE: German electricity price in Dollars: 36ct per kWh
+
+* how much electricity is needed to heat one kWh
+* so far it is assumed, that heating and cooling from the same device need the same ammount of electricity, which is only a bad approx.
+electricity_consumption('electricity')      = 1;
+electricity_consumption('gas')              = 0;
+electricity_consumption('mining')           = 1;
+electricity_consumption('airconditioning')  = 0.33;
+* air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power
 
 * maximum ammount of heat produced by one unit in kW
 peak_heat_supply_power('electricity')     = 0.6;
 peak_heat_supply_power('gas')             = 8;
 peak_heat_supply_power('mining')          = 3;
 peak_heat_supply_power('airconditioning') = 2.6;
-*8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
+* 8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
 
 * maximum ammount of heat drained from the system by one unit in kW
 peak_heat_drain_power('electricity')      = 0.0;
@@ -110,3 +160,6 @@ n_heating_units.lo('mining') = 0;
 n_heating_units.up('mining') = 20;
 n_heating_units.lo('airconditioning') = 0;
 n_heating_units.up('airconditioning') = 20;
+n_pv_modules.lo = 0;
+n_pv_modules.up = 60;
+* the SFM with 137m^2 which is simulated here could have a usable roof surface of around ~34m^2 which would fit ~20 panels of size 1.65m*0.992m
