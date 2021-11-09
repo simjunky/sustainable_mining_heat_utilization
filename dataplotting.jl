@@ -23,6 +23,9 @@ for directory in scenario_directories
     # file destinations to save plots to
     cost_plot_file = "scenarios/$(directory)/plots/costs_per_hour.pdf"
     temp_plot_file = "scenarios/$(directory)/plots/temp_per_hour.pdf"
+    pv_plot_file = "scenarios/$(directory)/plots/pv_per_hour.pdf"
+    scaled_pv_plot_file = "scenarios/$(directory)/plots/pv_per_hour_scaled.pdf"
+    pv_eff_plot_file = "scenarios/$(directory)/plots/pv_efficiency.pdf"
     supply_plot_file = "scenarios/$(directory)/plots/supply_per_hour.pdf"
     eff_supply_plot_file = "scenarios/$(directory)/plots/eff_supply_per_hour.pdf"
     cost_by_source_plot_file = "scenarios/$(directory)/plots/cost_by_source.pdf"
@@ -55,6 +58,18 @@ for directory in scenario_directories
     temp_plot = @df hourly_data plot(:hour, [:temperature_ambient, :temperature_envelope, :temperature_interior], title = "hourly temperature profiles", xlabel = "hours of the year [h]", ylabel = "temperature [°C]", label = ["ambient" "building envelope" "indoors" ], legend = :outertopright)
 
 
+    # use the @df macro to plot the pv output over the year and store it as a plot
+    pv_plot = @df hourly_data plot(:hour, [:pv_power_produced, :pv_power_used], title = "hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kW]", label = ["pv production" "used pv power" ], legend = :outertopright)
+
+
+    # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot
+    scaled_pv_plot = @df hourly_data plot(:hour, [:solar_radiation, :scaled_pv_power_produced, :scaled_pv_power_used], title = "scaled hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kW/m^2]", label = ["solar radiation" "pv production" "used pv power" ], legend = :outertopright)
+
+
+    # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot
+    pv_eff_plot = @df hourly_data plot(:hour, [:pv_relative_efficiency], title = "relative efficiency over the year", xlabel = "hours of the year [h]", ylabel = "rel-efficiency []", label = ["relative efficiency"], legend = :outertopright)
+
+
     # use the @df macro to plot the heat supply over the year and store it as a plot
     supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour, :electric_heat_supply_per_hour, :gas_heat_supply_per_hour, :mining_heat_supply_per_hour, :ac_heat_supply_per_hour, -:ac_heat_drain_per_hour], title = "hourly heat supply by source", xlabel = "hours of the year [h]", ylabel = "heat supply [kWh]", label = ["total" "electric" "gas" "mining" "ac-heating" "ac-cooling"], legend = :outertopright)
 
@@ -74,6 +89,9 @@ for directory in scenario_directories
     # write the stored plots to the .pdf-files
     savefig(cost_plot, cost_plot_file)
     savefig(temp_plot, temp_plot_file)
+    savefig(pv_plot, pv_plot_file)
+    savefig(scaled_pv_plot, scaled_pv_plot_file)
+    savefig(pv_eff_plot, pv_eff_plot_file)
     savefig(supply_plot, supply_plot_file)
     savefig(eff_supply_plot, eff_supply_plot_file)
     savefig(cost_bar_plot, cost_by_source_plot_file)
