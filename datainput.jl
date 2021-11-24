@@ -15,6 +15,10 @@ scenario_directories = isempty(ARGS) ? first(walkdir("./scenarios"))[2] : ARGS
 n = 8760
 
 
+# set color theme and palette for the plots
+theme(:vibrant, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
+
+
 # iterate throug all scenario directories
 for directory in scenario_directories
 

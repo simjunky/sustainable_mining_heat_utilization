@@ -19,6 +19,8 @@ scenario_directories = isempty(ARGS) ? first(walkdir("./scenarios"))[2] : ARGS
 #TODO: total cost/revenue for each location
 
 
+# set color theme and palette for the plots
+theme(:vibrant, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
 
 
 # plot the hourly temperature over the year for the scenarios with relatively stable temperatures
@@ -41,7 +43,7 @@ for directory in scenarios_stable
 
     plot!(plot_temp_stable, data[!, :hour], data[!, :temperature_ambient], label = directory)
 
-    plot!(plot_avg_temp_stable, data[!, :hour], sma(data[!, :temperature_ambient], n = 24), label = directory)
+    plot!(plot_avg_temp_stable, data[!, :hour], sma(Array(data.temperature_ambient), n = 24), label = directory)
 end
 
 savefig(plot_temp_stable, "comparison/temp_profiles_moderate.pdf")
@@ -70,7 +72,7 @@ for directory in scenarios_volatile
 
     plot!(plot_temp_volatile, data[!, :hour], data[!, :temperature_ambient], label = directory)
 
-    plot!(plot_avg_temp_volatile, data[!, :hour], sma(data[!, :temperature_ambient], n = 24), label = directory)
+    plot!(plot_avg_temp_volatile, data[!, :hour], sma(Array(data.temperature_ambient), n = 24), label = directory)
 end
 
 savefig(plot_temp_volatile, "comparison/temp_profiles_volatile.pdf")
@@ -80,7 +82,7 @@ savefig(plot_avg_temp_volatile, "comparison/temp_profiles_volatile_avg.pdf")
 
 
 # plot heating supply  by location in total and by source
-source_data = zeros((length(scenarios_stable), 5))
+source_data = zeros((length(scenarios_stable), 6))
 index = 1
 
 for directory in scenarios_stable
@@ -97,7 +99,7 @@ for directory in scenarios_stable
     data = CSV.read(inputfile, DataFrame; delim=',', header=1, select=[:source, :total_heat_supply_per_source, :total_heat_drain_per_source])
 
     source_data[index, 1] = sum(data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source])
-    source_data[index, 2:5] = data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source]
+    source_data[index, 2:6] = data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source]
 
     global index += 1
 end
