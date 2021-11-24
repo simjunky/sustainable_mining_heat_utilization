@@ -59,11 +59,11 @@ for directory in scenario_directories
 
 
     # use the @df macro to plot the pv output over the year and store it as a plot
-    pv_plot = @df hourly_data plot(:hour, [:pv_power_produced, :pv_power_used], title = "hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kW]", label = ["pv production" "used pv power" ], legend = :outertopright)
+    pv_plot = @df hourly_data plot(:hour, [:pv_power_produced, :pv_power_used], title = "hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kWh]", label = ["pv production" "used pv power" ], legend = :outertopright)
 
 
     # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot
-    scaled_pv_plot = @df hourly_data plot(:hour, [:solar_radiation, :scaled_pv_power_produced, :scaled_pv_power_used], title = "scaled hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kW/m^2]", label = ["solar radiation" "pv production" "used pv power" ], legend = :outertopright)
+    scaled_pv_plot = @df hourly_data plot(:hour, [:solar_radiation, :scaled_pv_power_produced, :scaled_pv_power_used], title = "scaled hourly photovoltaics profiles\n(1 m^2)", xlabel = "hours of the year [h]", ylabel = "power [kWh/m^2]", label = ["solar radiation" "pv production" "used pv power" ], legend = :outertopright)
 
 
     # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot

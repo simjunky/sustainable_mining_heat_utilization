@@ -1,8 +1,11 @@
-"found minimum of total cost(lower,level,upper,marginal)","-INF",463.94,"+INF",0.00
-"sum_of_heat_supply",26438.26
-"sum_of_heat_drain",6627.08
-"sum_of_mining_revenue",8626.17
-"sum_of_heating_cost",7049.36
+"found minimum of total cost(lower,level,upper,marginal)","-INF",485.46,"+INF",0.00
+"sum_of_heat_supply",19966.10
+"sum_of_heat_drain",154.92
+"sum_of_mining_revenue",6471.13
+"sum_of_produced_power_pv",0.00
+"sum_of_used_power_pv",0.00
+"sum_of_pv_revenue",0.00
+"sum_of_heating_cost",4915.83
 "sum_of_capital_investment",4237.00
-"sum_of_capital_cost",18384.46
+"sum_of_capital_cost",4920.96
 "mining_revenue_per_kwh",0.33
