@@ -15,13 +15,13 @@ Set heat_source additional heat sources / gas /;
 * parameters for mining rig and economical calculations:
 
 * the constant bitcoin price in Dollars
-btc_price       = 37500;
+btc_price       = 0.0001; //MODIFIED
 
 * expected bitcoin reward per 1 Terrahash of computing power in BTC
 btc_reward      = 0.0000003649;
 
 * constant mining rig hash rate in TH per hour
-miner_hashrate  = 73;
+miner_hashrate  = 1; //MODIFIED
 
 * constant private interest rate to borrow money
 interest_rate   = 0.07;
@@ -105,8 +105,8 @@ $set ELECTRICITY_PRICE 0.25
 
 * fuelprices of each heating source in Dollar per kWh
 fuel_price('electricity')         = %ELECTRICITY_PRICE%;
-fuel_price('gas')                 = 10; //Modified
-fuel_price('mining')              = 10; //Modified
+fuel_price('gas')                 = 10; //MODIFIED
+fuel_price('mining')              = 10; //MODIFIED
 fuel_price('airconditioning')     = %ELECTRICITY_PRICE% * (1/3);
 * Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
 * air conditioners dont heat/cool fully electric but have also some heat-pump effect to them and therefore only use electricity for ~1/3rd of the power => fuel price = elec-price * 1/3
@@ -122,9 +122,9 @@ electricity_consumption('airconditioning')  = 0.33;
 
 * maximum ammount of heat produced by one unit in kW
 peak_heat_supply_power('electricity')     = 0.6;
-peak_heat_supply_power('gas')             = 0.0; // MODIFIED
-peak_heat_supply_power('mining')          = 0.0; // MODIFIED
-peak_heat_supply_power('airconditioning') = 0.0; // MODIFIED
+peak_heat_supply_power('gas')             = 0.0001; // MODIFIED
+peak_heat_supply_power('mining')          = 0.0001; // MODIFIED (and non-zero because we divide by it)
+peak_heat_supply_power('airconditioning') = 0.0001; // MODIFIED
 * 8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
 
 * maximum ammount of heat drained from the system by one unit in kW
@@ -136,8 +136,8 @@ peak_heat_drain_power('airconditioning')  = 2.5;
 
 * capital cost of installing one heating unit in Dollar
 capital_cost('electricity')       = 1025;
-capital_cost('gas')               = 7000;
-capital_cost('mining')            = 3500;
+capital_cost('gas')               = 70000; // MODIFIED
+capital_cost('mining')            = 35000; // MODIFIED
 capital_cost('airconditioning')   = 737;
 
 * expected lifetime until repurchase or obsolecence in years

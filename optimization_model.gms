@@ -10,7 +10,7 @@ $title mining heat utilization optimization model
 * set a compile-time variable, if it is not already created via command line double dash parameter (as in: gams optimization_model.gms --SCENARIO_FOLDER=Germany_Stuttgart)
 * it specifies the folder where files of the corresponding scenario are stored
 * changing it is key to compute different scenarios
-$if not set SCENARIO_FOLDER $set SCENARIO_FOLDER Germany_Stuttgart
+$if not set SCENARIO_FOLDER $set SCENARIO_FOLDER Germany_Stuttgart_HeatDataComparison_noMining
 
 
 
