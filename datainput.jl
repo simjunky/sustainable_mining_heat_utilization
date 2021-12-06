@@ -16,7 +16,7 @@ n = 8760
 
 
 # set color theme and palette for the plots
-theme(:vibrant, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
+theme(:default, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
 
 
 # iterate throug all scenario directories

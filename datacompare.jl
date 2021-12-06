@@ -20,7 +20,7 @@ scenario_directories = isempty(ARGS) ? first(walkdir("./scenarios"))[2] : ARGS
 
 
 # set color theme and palette for the plots
-theme(:vibrant, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
+theme(:default, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan, :magenta2])
 
 
 # plot the hourly temperature over the year for the scenarios with relatively stable temperatures

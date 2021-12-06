@@ -105,7 +105,7 @@ $set ELECTRICITY_PRICE 0.25
 
 * fuelprices of each heating source in Dollar per kWh
 fuel_price('electricity')         = %ELECTRICITY_PRICE%;
-fuel_price('gas')                 = 10; //MODIFIED
+fuel_price('gas')                 = 0.083;
 fuel_price('mining')              = 10; //MODIFIED
 fuel_price('airconditioning')     = %ELECTRICITY_PRICE% * (1/3);
 * Mining uses electricity and since all electric heating is 100% efficient we can assume the same price per kWh as with electric heating
@@ -122,9 +122,9 @@ electricity_consumption('airconditioning')  = 0.33;
 
 * maximum ammount of heat produced by one unit in kW
 peak_heat_supply_power('electricity')     = 0.6;
-peak_heat_supply_power('gas')             = 0.0001; // MODIFIED
+peak_heat_supply_power('gas')             = 8;
 peak_heat_supply_power('mining')          = 0.0001; // MODIFIED (and non-zero because we divide by it)
-peak_heat_supply_power('airconditioning') = 0.0001; // MODIFIED
+peak_heat_supply_power('airconditioning') = 2.6;
 * 8kW is typical throughput of a residential gas pipe, 2.5kW the equivalent of a 4 heater (each 0.6kW) electric heating system for which the above capital cost was given
 
 * maximum ammount of heat drained from the system by one unit in kW
@@ -136,7 +136,7 @@ peak_heat_drain_power('airconditioning')  = 2.5;
 
 * capital cost of installing one heating unit in Dollar
 capital_cost('electricity')       = 1025;
-capital_cost('gas')               = 70000; // MODIFIED
+capital_cost('gas')               = 7000;
 capital_cost('mining')            = 35000; // MODIFIED
 capital_cost('airconditioning')   = 737;
 
