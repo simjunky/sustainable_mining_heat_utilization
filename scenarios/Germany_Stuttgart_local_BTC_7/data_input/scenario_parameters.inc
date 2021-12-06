@@ -15,7 +15,7 @@ Set heat_source additional heat sources / gas /;
 * parameters for mining rig and economical calculations:
 
 * the constant bitcoin price in Dollars
-btc_price       = 40000; //37500;
+btc_price       = 60000; //37500;
 
 * expected bitcoin reward per 1 Terrahash of computing power in BTC
 btc_reward      = 0.0000003649;

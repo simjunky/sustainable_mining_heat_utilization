@@ -15,7 +15,7 @@ Set heat_source additional heat sources / gas /;
 * parameters for mining rig and economical calculations:
 
 * the constant bitcoin price in Dollars
-btc_price       = 40000; //37500;
+btc_price       = 35000; //37500;
 
 * expected bitcoin reward per 1 Terrahash of computing power in BTC
 btc_reward      = 0.0000003649;
@@ -157,7 +157,7 @@ n_heating_units.up('electricity') = 20;
 n_heating_units.lo('gas') = 0;
 n_heating_units.up('gas') = 20;
 n_heating_units.lo('mining') = 0;
-n_heating_units.up('mining') = 20;
+n_heating_units.up('mining') = 5; //MODIFIED
 n_heating_units.lo('airconditioning') = 0;
 n_heating_units.up('airconditioning') = 20;
 n_pv_modules.lo = 0;

@@ -111,7 +111,7 @@ savefig(plot_supply_stable, "comparison/supply_bysource_moderate.pdf")
 
 
 
-scenarios_btc_price = ["Germany_Stuttgart_local_BTC_1" "Germany_Stuttgart_local_BTC_2" "Germany_Stuttgart_local_BTC_3" "Germany_Stuttgart_local_BTC_4" "Germany_Stuttgart_local_BTC_5"]
+scenarios_btc_price = ["Germany_Stuttgart_local_BTC_1" "Germany_Stuttgart_local_BTC_2" "Germany_Stuttgart_local_BTC_3" "Germany_Stuttgart_local_BTC_4" "Germany_Stuttgart_local_BTC_5" "Germany_Stuttgart_local_BTC_6" "Germany_Stuttgart_local_BTC_7" "Germany_Stuttgart_local_BTC_8"]
 
 # plot heating supply  by location in total and by source
 source_data = zeros((length(scenarios_btc_price), 3))
@@ -142,7 +142,7 @@ end
 
 plot_btc_price = plot(title = "Total annual costs and revenue\ndepending on BTC-price", xlabel = "BTC price [\$]", ylabel = "cost / revenue [\$]", legend = :outertopright)
 
-btc_prices = [30000, 40000, 50000, 60000, 70000]
+btc_prices = [30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000]
 plot!(plot_btc_price, btc_prices, source_data[:, 1], label = "total cost")
 plot!(plot_btc_price, btc_prices, source_data[:, 2], label = "mining revenue")
 plot!(plot_btc_price, btc_prices, source_data[:, 3], label = "heating cost")
