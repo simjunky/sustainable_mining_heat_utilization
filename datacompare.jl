@@ -140,11 +140,11 @@ for directory in scenarios_btc_price
     global index += 1
 end
 
-plot_btc_price = plot(title = "Total annual costs and revenue\ndepending on BTC-price", xlabel = "BTC price [\$]", ylabel = "cost / revenue [\$]", legend = :outertopright)
+plot_btc_price = plot(title = "Total annual costs and revenue\ndepending on BTC-price", xlabel = "BTC price [k\$]", ylabel = "cost / revenue [k\$]", legend = :outertopright)
 
 btc_prices = [30000, 35000, 40000, 45000, 50000, 55000, 60000, 65000]
-plot!(plot_btc_price, btc_prices, source_data[:, 1], label = "total cost")
-plot!(plot_btc_price, btc_prices, source_data[:, 2], label = "mining revenue")
-plot!(plot_btc_price, btc_prices, source_data[:, 3], label = "heating cost")
+plot!(plot_btc_price, btc_prices / 1000, source_data[:, 1]  / 1000, label = "total cost")
+plot!(plot_btc_price, btc_prices  / 1000, source_data[:, 2]  / 1000, label = "mining revenue")
+plot!(plot_btc_price, btc_prices  / 1000, source_data[:, 3]  / 1000, label = "heating cost")
 
 savefig(plot_btc_price, "comparison/cost_&_mining_revenue.pdf")
