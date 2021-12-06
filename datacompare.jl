@@ -104,6 +104,6 @@ for directory in scenarios_stable
     global index += 1
 end
 
-plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Karthoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "gas" "mining" "AC"], legend = :outertopright)
+plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Karthoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "mining" "AC" "gas" "pv"], legend = :outertopright)
 
 savefig(plot_supply_stable, "comparison/supply_bysource_moderate.pdf")
