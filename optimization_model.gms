@@ -197,7 +197,8 @@ Files
 * use print control = 5 for comma delimited file
 data_scalars.pc = 5;
 put data_scalars;
-put 'found minimum of total cost(lower,level,upper,marginal)', cost.lo, cost.l, cost.up, cost.m /;
+*put 'found minimum of total cost(lower,level,upper,marginal)', cost.lo, cost.l, cost.up, cost.m /;
+put 'found minimum of total cost', cost.l /; 
 put 'sum_of_heat_supply', sum((heat_source, t), heat_supply.l(heat_source, t)) /;
 put 'sum_of_heat_drain', sum((heat_source, t), heat_drain.l(heat_source, t)) /;
 put 'sum_of_mining_revenue', sum(t, mining_revenue.l(t)) /;

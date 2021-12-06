@@ -107,3 +107,44 @@ end
 plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Karthoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "mining" "AC" "gas" "pv"], legend = :outertopright)
 
 savefig(plot_supply_stable, "comparison/supply_bysource_moderate.pdf")
+
+
+
+
+scenarios_btc_price = ["Germany_Stuttgart_local_BTC_1" "Germany_Stuttgart_local_BTC_2" "Germany_Stuttgart_local_BTC_3" "Germany_Stuttgart_local_BTC_4" "Germany_Stuttgart_local_BTC_5"]
+
+# plot heating supply  by location in total and by source
+source_data = zeros((length(scenarios_btc_price), 3))
+index = 1
+
+for directory in scenarios_btc_price
+
+    inputfile = "scenarios/$(directory)/data_output/data_scalars.csv"
+
+    # skip scenario if input files do not exist and inform about it
+    if(!isfile(inputfile))
+        printstyled("$(inputfile) not found\n", color = :light_red)
+        global index += 1
+        continue
+    end
+
+    data = CSV.read(inputfile, DataFrame; delim=',', header=0)
+
+    # first the total annual cost
+    source_data[index, 1] = sum(data[1,2])
+    # then the total annual mining revenue
+    source_data[index, 2] = sum(data[4,2])
+    # then the total annual heating (fuel) cost
+    source_data[index, 3] = sum(data[8,2])
+
+    global index += 1
+end
+
+plot_btc_price = plot(title = "Total annual costs and revenue\ndepending on BTC-price", xlabel = "BTC price [\$]", ylabel = "cost / revenue [\$]", legend = :outertopright)
+
+btc_prices = [30000, 40000, 50000, 60000, 70000]
+plot!(plot_btc_price, btc_prices, source_data[:, 1], label = "total cost")
+plot!(plot_btc_price, btc_prices, source_data[:, 2], label = "mining revenue")
+plot!(plot_btc_price, btc_prices, source_data[:, 3], label = "heating cost")
+
+savefig(plot_btc_price, "comparison/cost_&_mining_revenue.pdf")
