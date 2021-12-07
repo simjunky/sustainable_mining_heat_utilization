@@ -58,8 +58,8 @@ for directory in scenario_directories
 
 
     # write the reduced and scaled data WITHOUT headers to the target destination .csv-file to be used as model input
-    CSV.write(temp_target_file, temp_load_data, writeheader = false)
-    CSV.write(solar_target_file, solar_load_data, writeheader = false)
+    CSV.write(temp_target_file, temp_load_data, header = false)
+    CSV.write(solar_target_file, solar_load_data, header = false)
 
 
     # use the @df macro to easily plot the heat load and temperature over the year and store it as a plot
