@@ -24,7 +24,7 @@ theme(:default, palette = [:darkorange1, :deepskyblue, :lawngreen, :red2, :cyan,
 
 
 # plot the hourly temperature over the year for the scenarios with relatively stable temperatures
-scenarios_stable = ["Sudan_Karthoum"  "SouthAfrica_CapeTown"  "Denmark_Copenhagen"  "Argentina_RioGrande" "Russia_Magadan"]
+scenarios_stable = ["Sudan_Khartoum"  "SouthAfrica_CapeTown"  "Denmark_Copenhagen"  "Argentina_RioGrande" "Russia_Magadan"]
 
 plot_temp_stable = plot(title = "temperature profiles\nlocations with moderate fluctuation", xlabel = "hours of the year [h]", ylabel = "temperature [°C]", legend = :outertopright)
 plot_avg_temp_stable = plot(title = "average temperature profiles\nlocations with moderate fluctuation", xlabel = "hours of the year [h]", ylabel = "temperature [°C]", legend = :outertopright)
@@ -104,7 +104,7 @@ for directory in scenarios_stable
     global index += 1
 end
 
-plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Karthoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "mining" "AC" "gas" "pv"], legend = :outertopright)
+plot_supply_stable = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with moderate fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Khartoum" "CapeTown" "Copenhagen" "RioGrande" "Magadan"]), label = ["total" "electric" "mining" "AC" "gas" "pv"], legend = :outertopright)
 
 savefig(plot_supply_stable, "comparison/supply_bysource_temp_moderate.pdf")
 
