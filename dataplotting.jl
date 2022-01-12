@@ -34,6 +34,7 @@ for directory in scenario_directories
     eff_supply_plot_file = "scenarios/$(directory)/plots/eff_supply_per_hour"
     cost_by_source_plot_file = "scenarios/$(directory)/plots/cost_by_source"
     supply_by_source_plot_file = "scenarios/$(directory)/plots/supply_by_source"
+    supply_pie_plot_file = "scenarios/$(directory)/plots/supply_pie"
 
 
     # skip scenario if input files do not exist and inform about it
@@ -66,11 +67,11 @@ for directory in scenario_directories
     pv_plot = @df hourly_data plot(:hour, [:pv_power_produced, :pv_power_used], title = "hourly photovoltaics profiles", xlabel = "hours of the year [h]", ylabel = "power [kW]", label = ["pv production" "used pv power" ], legend = :outertopright)
 
 
-    # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot
+    # use the @df macro to plot the solar radiation and pv output for one m^2 over the year and store it as a plot
     scaled_pv_plot = @df hourly_data plot(:hour, [:solar_radiation, :scaled_pv_power_produced, :scaled_pv_power_used], title = "scaled hourly photovoltaics profiles\n(1 m^2)", xlabel = "hours of the year [h]", ylabel = "power [kW/m^2]", label = ["solar radiation" "pv production" "used pv power" ], legend = :outertopright)
 
 
-    # use the @df macro to plot the solar radiation and pv output for on m^2 over the year and store it as a plot
+    # use the @df macro to plot the relative efficiency of a pv panel over the year and store it as a plot
     pv_eff_plot = @df hourly_data plot(:hour, [:pv_relative_efficiency], title = "relative efficiency over the year", xlabel = "hours of the year [h]", ylabel = "rel-efficiency []", label = ["relative efficiency"], legend = :outertopright)
 
 
@@ -89,7 +90,7 @@ for directory in scenario_directories
 
 
     # use the @df macro to plot the total effective heat supply over the year and store it as a plot
-    eff_supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour - :ac_heat_drain_per_hour], title = "effective hourly heat supply", xlabel = "hours of the year [h]", ylabel = "heat supply [kWh]", label = "effective total", legend = :outertopright)
+    eff_supply_plot = @df hourly_data plot(:hour, [:total_heat_supply_per_hour - :total_heat_drain_per_hour], title = "effective hourly heat supply", xlabel = "hours of the year [h]", ylabel = "heat supply [kWh]", label = "effective total", legend = :outertopright)
 
 
     # make a bar plot to show the different costs side by side
@@ -98,6 +99,11 @@ for directory in scenario_directories
 
     # make a bar plot to show the different supply ammounts side by side
     supply_bar_plot = groupedbar([source_data[!, :total_heat_supply_per_source] source_data[!, :total_heat_drain_per_source]], bar_position = :dodge, title = "total supply and drain by source", xlabel = "sources", ylabel = "total heat supply [kWh]", xticks = (1:length(source_data[!, :source]), source_data[!, :source]), legend = false)
+
+
+    # make a pie chart to show the different supply ammounts side by side
+    supply_pie_plot = pie(source_data[!, :total_heat_supply_per_source], title = "relative heat supply by source", label = reshape(source_data[!, :source], 1, length(source_data[!, :source])), legend = :outertopright)
+    #TODO: apparently pie chart legends do not take this legend so its bugged...
 
 
     # write the stored plots to the .pdf-files
@@ -127,6 +133,9 @@ for directory in scenario_directories
 
     savefig(supply_bar_plot, supply_by_source_plot_file * ".pdf")
     savefig(supply_bar_plot, supply_by_source_plot_file * ".png")
+
+    savefig(supply_pie_plot, supply_pie_plot_file * ".pdf")
+    savefig(supply_pie_plot, supply_pie_plot_file * ".png")
 
 
     printstyled("plotted output for $(directory)\n", color = :light_green)
