@@ -111,6 +111,37 @@ savefig(plot_supply_stable, "comparison/supply_bysource_temp_moderate.pdf")
 
 
 
+
+# plot heating supply  by location in total and by source
+source_data = zeros((length(scenarios_volatile), 6))
+index = 1
+
+for directory in scenarios_volatile
+
+    inputfile = "scenarios/$(directory)/data_output/data_vectors_bysource.csv"
+
+    # skip scenario if input files do not exist and inform about it
+    if(!isfile(inputfile))
+        printstyled("$(inputfile) not found\n", color = :light_red)
+        global index += 1
+        continue
+    end
+
+    data = CSV.read(inputfile, DataFrame; delim=',', header=1, select=[:source, :total_heat_supply_per_source, :total_heat_drain_per_source])
+
+    source_data[index, 1] = sum(data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source])
+    source_data[index, 2:6] = data[!, :total_heat_supply_per_source] - data[!, :total_heat_drain_per_source]
+
+    global index += 1
+end
+
+plot_supply_volatile = groupedbar(source_data, bar_position = :dodge, title = "heat supply (total & by source)\nlocations with high fluctuation", xlabel = "locations", ylabel = "heat supply [kWh]", xticks = (1:5, ["Riad" "Islamabad" "Geneva" "Volgograd" "Ulaan Baatar"]), label = ["total" "electric" "mining" "AC" "gas" "pv"], legend = :outertopright)
+savefig(plot_supply_volatile, "comparison/supply_bysource_temp_volatile.pdf")
+
+
+
+
+
 scenarios_btc_price = ["Germany_Stuttgart_local_BTC_1" "Germany_Stuttgart_local_BTC_2" "Germany_Stuttgart_local_BTC_3" "Germany_Stuttgart_local_BTC_4" "Germany_Stuttgart_local_BTC_5" "Germany_Stuttgart_local_BTC_6" "Germany_Stuttgart_local_BTC_7" "Germany_Stuttgart_local_BTC_8"]
 
 # plot heating supply  by location in total and by source
@@ -209,3 +240,23 @@ plot!(plot_elec_price, elec_prices, cost_data[:, 2]  / 1000, label = "mining rev
 plot!(plot_elec_price, elec_prices, cost_data[:, 3]  / 1000, label = "heating cost")
 
 savefig(plot_elec_price, "comparison/cost_&_mining_revenue_elec.pdf")
+
+
+
+
+inputfile_model = "scenarios/Germany_Stuttgart_HeatDataComparison_onlyE/data_output/data_vectors_hourly.csv"
+inputfile_data = "scenarios/Germany_Stuttgart_HeatDataComparison_onlyE/data_input/hourly_heat_load.csv"
+
+#TODO: check if file exists
+
+data_model = CSV.read(inputfile_model, DataFrame; delim=',', header=1, select=[:hour, :total_heat_supply_per_hour, :total_heat_drain_per_hour])
+data_data = CSV.read(inputfile_data, DataFrame; delim=',', header=0)
+
+demand_model = sma(Array(data_model.total_heat_supply_per_hour - data_model.total_heat_drain_per_hour), n = 24)
+demand_data = sma(Array(data_data[!,3]), n = 24)
+
+plot_heat_demand_comp = plot(title = "Heat demand comparison\nrolling average", xlabel = "hours of the year [h]", ylabel = "heat demand [kWh]", legend = :outertopright)
+plot!(plot_heat_demand_comp, data_model[!,:hour], demand_model, label = "surrogate model")
+plot!(plot_heat_demand_comp, data_model[!,:hour], demand_data, label = "Hotmaps project")
+
+savefig(plot_heat_demand_comp, "comparison/heat_demand_comparison.pdf")
