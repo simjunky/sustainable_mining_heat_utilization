@@ -15,7 +15,7 @@ Set heat_source additional heat sources / gas /;
 * parameters for mining rig and economical calculations:
 
 * the constant bitcoin price in Dollars
-btc_price       = 47000; //37500; //47K is year long average from December on
+btc_price       = 40000; //37500; //47K is year long average from December on
 
 * expected bitcoin reward per 1 Terrahash of computing power in BTC
 btc_reward      = 0.0000003649;
